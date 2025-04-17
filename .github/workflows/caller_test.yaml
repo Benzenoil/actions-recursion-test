@@ -11,6 +11,6 @@ jobs:
         uses: actions/checkout@v4 # 或者使用 v3 或最新版
 
       - name: Call the reusable workflow
-        uses: .github/workflows/reusable_abc_test.yaml # 现在可以找到这个文件了
+        uses: ./.github/workflows/reusable_abc_test.yaml@${{ github.ref }}
         with:
           target_environment: experimental-env # 传递环境名称
