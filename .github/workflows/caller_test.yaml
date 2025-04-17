@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call the reusable workflow
-        uses: ./.github/workflows/reusable_abc_test.yaml
+        uses: .github/workflows/reusable_abc_test.yaml
         with:
           target_environment: experimental-env # 传递环境名称
