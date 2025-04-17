@@ -1,0 +1,22 @@
+# .github/workflows/listener_test.yaml
+name: Deployment Listener Test Workflow
+# --- 核心测试点：监听 on: deployment ---
+on:
+  deployment
+# ------------------------------------
+
+jobs:
+  deployment_event_received:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm Deployment Trigger
+        run: |
+          echo "SUCCESS: Deployment Listener Workflow was triggered!"
+          echo "Deployment Event Details:"
+          echo "  Environment: ${{ github.event.deployment.environment }}"
+          echo "  SHA: ${{ github.event.deployment.sha }}"
+          echo "  Task: ${{ github.event.deployment.task }}"
+          echo "  Description: ${{ github.event.deployment.description }}"
+          # 打印完整的事件 payload 以供调试
+          echo "Full event payload:"
+          echo '${{ toJSON(github.event) }}'

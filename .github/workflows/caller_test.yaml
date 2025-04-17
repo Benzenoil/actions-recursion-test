@@ -1,0 +1,13 @@
+# .github/workflows/caller_test.yaml
+name: Caller Test Workflow
+on:
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  call_reusable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call the reusable workflow
+        uses: ./.github/workflows/reusable_abc_test.yaml
+        with:
+          target_environment: experimental-env # 传递环境名称

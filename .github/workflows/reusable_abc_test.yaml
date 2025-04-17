@@ -1,0 +1,22 @@
+# .github/workflows/reusable_abc_test.yaml
+name: Reusable ABC Test Workflow
+on:
+  workflow_call:
+    inputs:
+      target_environment:
+        required: true
+        type: string
+
+jobs:
+  job_using_environment:
+    runs-on: ubuntu-latest
+    # --- 核心测试点：使用 environment 关键字 ---
+    environment:
+      name: ${{ inputs.target_environment }}
+    # -----------------------------------------
+    steps:
+      - name: Simple Step Inside Environment Context
+        run: |
+          echo "Running job within the context of environment: ${{ inputs.target_environment }}"
+          echo "No explicit deployment API calls or gh commands here."
+          sleep 5 # 短暂暂停，模拟一点工作负载
