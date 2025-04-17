@@ -1,4 +1,4 @@
-# .github/workflows/caller_test.yaml
+# .github/workflows/caller_test.yaml (修正后)
 name: Caller Test Workflow
 on:
   workflow_dispatch: # 允许手动触发
@@ -7,7 +7,10 @@ jobs:
   call_reusable:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # 或者使用 v3 或最新版
+
       - name: Call the reusable workflow
-        uses: .github/workflows/reusable_abc_test.yaml@master
+        uses: ./.github/workflows/reusable_abc_test.yaml # 现在可以找到这个文件了
         with:
           target_environment: experimental-env # 传递环境名称
